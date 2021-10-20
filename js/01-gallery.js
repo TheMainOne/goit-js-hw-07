@@ -1,6 +1,20 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
+
 const list = document.querySelector('.gallery');
+list.addEventListener('click', handlerClickOnGalleryItem);
+
+function handlerClickOnGalleryItem(event) {
+  event.preventDefault();
+
+  if (event.target.nodeName !== "IMG") {
+    return;
+  } else {
+   basicLightbox.create(`
+		<img width="1280" src="${event.target.dataset.source}">
+	`).show()
+  }
+};
 
 const markup = galleryItems.map((item) => `
 <div class="gallery__item">
@@ -17,15 +31,6 @@ const markup = galleryItems.map((item) => `
 list.innerHTML = markup;
 
 
-// const technologies = ["HTML", "CSS", "JavaScript", "React", "Node"];
-// const list = document.querySelector(".list");
 
-// const markup = technologies
-//   .map((technology) => `<li class="list-item">${technology}</li>`)
-//   .join("");
 
-// // Check the console, you'll see a single string with HTML tags
-// console.log(markup);
 
-// // Adding all the markup in one operation
-// list.innerHTML = markup;
