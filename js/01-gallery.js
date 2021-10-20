@@ -6,17 +6,17 @@ list.addEventListener("click", handlerClickOnGalleryItem);
 
 function handlerClickOnGalleryItem(event) {
   event.preventDefault();
-  const modal = basicLightbox.create(`
+  const onModalWindow = basicLightbox.create(`
 		<img width="1280" src="${event.target.dataset.source}">
 	`);
 
   if (event.target.nodeName !== "IMG") {
     return;
   } else {
-    modal.show();
+    onModalWindow.show();
     window.addEventListener("keyup", (event) => {
       if (event.code === "Escape") {
-        modal.close();
+        onModalWindow.close();
       }
     });
   }
