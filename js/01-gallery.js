@@ -1,9 +1,8 @@
-import { galleryItems } from './gallery-items.js';
+import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-const list = document.querySelector('.gallery');
-list.addEventListener('click', handlerClickOnGalleryItem);
-
+const list = document.querySelector(".gallery");
+list.addEventListener("click", handlerClickOnGalleryItem);
 
 function handlerClickOnGalleryItem(event) {
   event.preventDefault();
@@ -15,15 +14,17 @@ function handlerClickOnGalleryItem(event) {
     return;
   } else {
     modal.show();
-    window.addEventListener('keyup', (event) => {
-      if (event.code === 'Escape') {
-      modal.close();
-    }
+    window.addEventListener("keyup", (event) => {
+      if (event.code === "Escape") {
+        modal.close();
+      }
     });
   }
 }
 
-const markup = galleryItems.map((item) => `
+const markup = galleryItems
+  .map(
+    (item) => `
 <div class="gallery__item">
   <a class="gallery__link" href="${item.original}">
     <img
@@ -33,9 +34,8 @@ const markup = galleryItems.map((item) => `
       alt="${item.description}"
     />
   </a>
-</div>`).join('');
+</div>`
+  )
+  .join("");
 
 list.innerHTML = markup;
-
-
-
