@@ -4,17 +4,24 @@ import { galleryItems } from './gallery-items.js';
 const list = document.querySelector('.gallery');
 list.addEventListener('click', handlerClickOnGalleryItem);
 
+
 function handlerClickOnGalleryItem(event) {
   event.preventDefault();
+  const modal = basicLightbox.create(`
+		<img width="1280" src="${event.target.dataset.source}">
+	`);
 
   if (event.target.nodeName !== "IMG") {
     return;
   } else {
-   basicLightbox.create(`
-		<img width="1280" src="${event.target.dataset.source}">
-	`).show()
+    modal.show();
+    window.addEventListener('keyup', (event) => {
+      if (event.code === 'Escape') {
+      modal.close();
+    }
+    });
   }
-};
+}
 
 const markup = galleryItems.map((item) => `
 <div class="gallery__item">
@@ -29,8 +36,6 @@ const markup = galleryItems.map((item) => `
 </div>`).join('');
 
 list.innerHTML = markup;
-
-
 
 
 
