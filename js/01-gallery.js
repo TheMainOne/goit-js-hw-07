@@ -6,22 +6,22 @@ list.addEventListener("click", imageShow);
 
 const instance = basicLightbox.create(`<img src="" />`, {
   onShow: () => {
-    window.addEventListener('keydown', keydownEscape);
+    window.addEventListener("keydown", keydownEscape);
   },
   onClose: () => {
-    window.removeEventListener('keydown', keydownEscape);
+    window.removeEventListener("keydown", keydownEscape);
   },
 });
 
 function imageShow(event) {
   event.preventDefault();
-  instance.element().querySelector('img').src = event.target.dataset.source;
+  instance.element().querySelector("img").src = event.target.dataset.source;
   instance.show();
 }
 
 function keydownEscape(event) {
   console.log(event);
-  if (event.key === 'Escape') {
+  if (event.key === "Escape") {
     instance.close();
     return;
   }
