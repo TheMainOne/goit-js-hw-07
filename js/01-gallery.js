@@ -2,23 +2,28 @@ import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
 const list = document.querySelector(".gallery");
-list.addEventListener("click", handlerClickOnGalleryItem);
+list.addEventListener("click", imageShow);
 
-function handlerClickOnGalleryItem(event) {
+const instance = basicLightbox.create(`<img src="" />`, {
+  onShow: () => {
+    window.addEventListener('keydown', keydownEscape);
+  },
+  onClose: () => {
+    window.removeEventListener('keydown', keydownEscape);
+  },
+});
+
+function imageShow(event) {
   event.preventDefault();
-  const onModalWindow = basicLightbox.create(`
-		<img width="1280" src="${event.target.dataset.source}">
-	`);
+  instance.element().querySelector('img').src = event.target.dataset.source;
+  instance.show();
+}
 
-  if (event.target.nodeName !== "IMG") {
+function keydownEscape(event) {
+  console.log(event);
+  if (event.key === 'Escape') {
+    instance.close();
     return;
-  } else {
-    onModalWindow.show();
-    window.addEventListener("keyup", (event) => {
-      if (event.code === "Escape") {
-        onModalWindow.close();
-      }
-    });
   }
 }
 
