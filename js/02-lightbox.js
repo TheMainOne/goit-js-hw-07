@@ -3,8 +3,8 @@ import { galleryItems } from './gallery-items.js';
 let gallery = document.querySelector('.gallery');
 
 const markup = galleryItems.map(item => `
-<li>
-<a class="gallery__item" href="${item.original}">
+<li class="gallery__item">
+<a class="gallery__link" href="${item.original}">
   <img class="gallery__image" src="${item.preview}" alt="${item.description}" />
 </a>
 </li>
